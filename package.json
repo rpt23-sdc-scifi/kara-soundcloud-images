@@ -1,15 +1,20 @@
 {
-  "name": "",
+  "name": "soundcloud-images",
   "version": "",
   "description": "",
-  "author": "",
+  "author": "Cameron Christensen",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "mongoose": "^5.10.6",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
