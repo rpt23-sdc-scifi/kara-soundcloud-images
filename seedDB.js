@@ -11,11 +11,7 @@ const seedDatabase = () => {
     axios.get(`https://api.unsplash.com/search/photos?query=music&page=${j + 1}&per_page=10&client_id=${apiKey}`)
       .then((response) => {
         imageData.push(...response.data.results);
-        // console.log(imageData.length);
         return imageData;
-      })
-      .then((data) => {
-        console.log('What is this: ', data.length);
       })
       .catch((error) => {
         console.log('Error making GET request: ', error);
@@ -23,7 +19,6 @@ const seedDatabase = () => {
   }
 
   setTimeout(() => {
-    // console.log('Length of data: ', imageData.length);
     for (var i = 0; i < imageData.length; i++) {
       var bandObj = {
         bandId: i + 1,
@@ -43,9 +38,3 @@ const seedDatabase = () => {
 };
 
 seedDatabase();
-
-// Notes:
-// iterate through json returned from API call to unsplash
-// seed db...
-// save 100 images to db
-// create script in package.json

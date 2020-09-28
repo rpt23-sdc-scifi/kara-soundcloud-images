@@ -98,7 +98,6 @@ var bandNames = ['Down Home Agita',
   'Finger Brawl',
   'The Fearsome Onrush',
   'Butterfly Blvd.',
-  'Innocent Headhunter'
 ];
 
 module.exports.bandNames = bandNames;
