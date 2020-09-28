@@ -1,4 +1,5 @@
 const db = require('./database/database.js');
+const bn = require('./bandNames.js');
 
 const apiKey = require('./config.js');
 const axios = require('axios');
@@ -26,7 +27,8 @@ const seedDatabase = () => {
     for (var i = 0; i < imageData.length; i++) {
       var bandObj = {
         bandId: i + 1,
-        bandImageUrl: imageData[i].urls.raw
+        bandImageUrl: imageData[i].urls.raw,
+        bandName: bn.bandNames[i]
       };
       db.saveImages(bandObj)
         .then((response) => {
