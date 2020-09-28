@@ -15,28 +15,28 @@ db.once('open', function() {
 
 // ------------- DB SCHEMA ------------ //
 
-// const imageSchema = new mongoose.Schema({
-//   songId: {
-//     type: Number,
-//     unique: true
-//   },
-//   bandId: {
-//     type: Number,
-//     unique: true
-//   },
-//   bandName: String,
-//   songImageUrl: String,
-//   bandImageUrl: String
-// });
-
 const imageSchema = new mongoose.Schema({
+  songId: {
+    type: Number,
+    unique: true
+  },
   bandId: {
     type: Number,
     unique: true
   },
-  bandImageUrl: String,
   bandName: String,
+  songImageUrl: String,
+  bandImageUrl: String
 });
+
+// const imageSchema = new mongoose.Schema({
+//   bandId: {
+//     type: Number,
+//     unique: true
+//   },
+//   bandImageUrl: String,
+//   bandName: String,
+// });
 
 const Image = mongoose.model('Image', imageSchema);
 
