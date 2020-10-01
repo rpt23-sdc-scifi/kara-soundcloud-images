@@ -1,6 +1,6 @@
 # Project Name
 
-> Project description
+> SoundCloud App - Band Profile Module
 
 ## Related Projects
 
