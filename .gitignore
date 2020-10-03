@@ -25,4 +25,4 @@ build/
 dist/
 
 # API
-apiKey.js
+config.js

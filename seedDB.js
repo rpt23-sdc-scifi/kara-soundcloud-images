@@ -1,5 +1,5 @@
-const db = require('./database/database.js');
-const bn = require('./bandNames.js');
+const database = require('./database/database.js');
+const bands = require('./bandNames.js');
 
 const apiKey = require('./config.js');
 const axios = require('axios');
@@ -9,20 +9,18 @@ const seedDatabase = () => {
   var imageData = [];
   axios.get(`https://api.unsplash.com/search/photos?query=music&per_page=30&client_id=${apiKey}`)
     .then((response) => {
-      console.log('Response from Image GET: ', response.data.results);
+      // console.log('Response from Image GET: ', response.data.results);
       imageData.push(...response.data.results);
       return imageData;
     })
     .then((results) => {
-      for (var i = 0; i < imageData.length; i++) {
+      for (var i = 0; i < 30; i++) {
         var bandObj = {
           bandId: i + 1,
-          songId: i + 1,
           bandImageUrl: imageData[i].urls.raw,
-          songImageUrl: imageData[i].urls.regular,
-          bandName: bn.bandNames[i]
+          bandName: bands.bandNames[i]
         };
-        db.saveImages(bandObj)
+        database.saveImages(bandObj)
           .then((response) => {
             console.log('Response from db save: ', response);
           })
@@ -33,7 +31,12 @@ const seedDatabase = () => {
     })
     .catch((error) => {
       console.log('Error making GET request: ', error);
+      // res.sendStatus(500).send(error);
     });
 };
 
 seedDatabase();
+
+// look into randomly generating bands/images with song id
+// fill out an array to randomly distribute 30 bands to 100 song id's
+// .populate()?

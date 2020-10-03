@@ -15,28 +15,30 @@ db.once('open', function() {
 
 // ------------- DB SCHEMA ------------ //
 
+//  ***** Removed songId and songImageUrl from previous schema *****
+
+// const imageSchema = new mongoose.Schema({
+//   songId: {
+//     type: Number,
+//     unique: true
+//   },
+//   bandId: {
+//     type: Number,
+//     unique: true
+//   },
+//   bandName: String,
+//   songImageUrl: String,
+//   bandImageUrl: String
+// });
+
 const imageSchema = new mongoose.Schema({
-  songId: {
-    type: Number,
-    unique: true
-  },
   bandId: {
     type: Number,
     unique: true
   },
   bandName: String,
-  songImageUrl: String,
   bandImageUrl: String
 });
-
-// const imageSchema = new mongoose.Schema({
-//   bandId: {
-//     type: Number,
-//     unique: true
-//   },
-//   bandImageUrl: String,
-//   bandName: String,
-// });
 
 const Image = mongoose.model('Image', imageSchema);
 
@@ -44,7 +46,18 @@ const Image = mongoose.model('Image', imageSchema);
 
 const saveImages = (imageData) => {
   var image = new Image(imageData);
-  return image.save();
+  return image.save()
+    .catch((error) => {
+      console.log('Error saving to database: ', error);
+    });
+};
+
+const findBand = function(id) {
+  return Image.findOne({bandId: id})
+    .catch((error) => {
+      console.log('Error - Band not found: ', error);
+    });
 };
 
 module.exports.saveImages = saveImages;
+module.exports.findBand = findBand;
