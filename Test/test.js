@@ -12,12 +12,14 @@ describe('/GET band', () => {
     chai.request(app)
       .get('/artistBio/1')
       .end((err, res) => {
-        // console.log('Response: ', res);
+        // console.log('Response: ', res.body);
         res.should.have.status(200);
-        res.body.should.be.an('object');
-        res.body.bandId.should.be.a('number');
-        res.body.bandId.should.be.equal(1);
-        res.body.bandImageUrl.should.be.a('string');
+        res.body.data.should.be.an('object');
+        res.body.data.bandId.should.be.a('number');
+        res.body.data.bandId.should.be.equal(1);
+        res.body.data.bandImageUrl.should.be.a('string');
+        res.body.data.bandName.should.be.a('string');
+        res.body.data.bandName.should.be.equal('Down Home Agita');
         done();
       });
   });
@@ -26,10 +28,8 @@ describe('/GET band', () => {
     chai.request(app)
       .get('/artistBio/34')
       .end((err, res) => {
-        // console.log(res);
-        res.should.have.status(200);
-        res.body.should.be.an('object');
-        res.body.should.be.empty;
+        console.log(res.body);
+        res.should.have.status(400);
       });
   });
 });

@@ -31,7 +31,7 @@ const seedDatabase = () => {
     })
     .catch((error) => {
       console.log('Error making GET request: ', error);
-      // res.sendStatus(500).send(error);
+      res.sendStatus(400).send('Could Not Find Images');
     });
 };
 

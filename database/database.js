@@ -53,10 +53,7 @@ const saveImages = (imageData) => {
 };
 
 const findBand = function(id) {
-  return Image.findOne({bandId: id})
-    .catch((error) => {
-      console.log('Error - Band not found: ', error);
-    });
+  return Image.findOne({bandId: id});
 };
 
 module.exports.saveImages = saveImages;
