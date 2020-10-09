@@ -1,7 +1,7 @@
 // ----------- DB CONNECTION ---------- //
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/images', {
+mongoose.connect('mongodb://localhost/bands', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -15,23 +15,7 @@ db.once('open', function() {
 
 // ------------- DB SCHEMA ------------ //
 
-//  ***** Removed songId and songImageUrl from previous schema *****
-
-// const imageSchema = new mongoose.Schema({
-//   songId: {
-//     type: Number,
-//     unique: true
-//   },
-//   bandId: {
-//     type: Number,
-//     unique: true
-//   },
-//   bandName: String,
-//   songImageUrl: String,
-//   bandImageUrl: String
-// });
-
-const imageSchema = new mongoose.Schema({
+const bandSchema = new mongoose.Schema({
   bandId: {
     type: Number,
     unique: true
@@ -42,21 +26,21 @@ const imageSchema = new mongoose.Schema({
   tracks: Number
 });
 
-const Image = mongoose.model('Image', imageSchema);
+const Band = mongoose.model('Band', bandSchema);
 
 // --------- SAVE IMAGE FUNC --------- //
 
-const saveImages = (imageData) => {
-  var image = new Image(imageData);
-  return image.save()
+const saveBands = (bandData) => {
+  var band = new Band(bandData);
+  return band.save()
     .catch((error) => {
       console.log('Error saving to database: ', error);
     });
 };
 
 const findBand = function(id) {
-  return Image.findOne({bandId: id});
+  return Band.findOne({bandId: id});
 };
 
-module.exports.saveImages = saveImages;
+module.exports.saveBands = saveBands;
 module.exports.findBand = findBand;

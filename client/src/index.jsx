@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-// import { MDBContainer, MDBRow, MDBCol, MDBButton } from 'mdbreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { BiEqualizer } from 'react-icons/bi';
 import { BsExclamationDiamondFill } from 'react-icons/bs';
 import { BsPersonPlus } from 'react-icons/bs';
-
 
 class BandProfile extends React.Component {
   constructor(props) {
@@ -22,11 +18,6 @@ class BandProfile extends React.Component {
       tracks: null
     };
     this.updateBio = this.updateBio.bind(this);
-    this.getRandomInt = this.getRandomInt.bind(this);
-  }
-
-  getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
   }
 
   updateBio(data) {
@@ -40,10 +31,8 @@ class BandProfile extends React.Component {
     });
   }
 
-
-
   componentDidMount() {
-    axios.get('/artistBio/2')
+    axios.get('/artistBio/10')
       .then((response) => {
         console.log('Response from initial render GET: ', response.data.data);
         this.updateBio(response.data.data);
@@ -77,24 +66,3 @@ class BandProfile extends React.Component {
 }
 
 ReactDOM.render(<BandProfile />, document.getElementById('artist-bio'));
-
-/*
-      <div className="cam artist-bio">
-        <img className="band-image" src={this.state.bandImageUrl}/>
-        <h3 className="band-name">{this.state.bandName}</h3>
-      </div>
-
-         <MDBContainer size="sm">
-        <MDBRow>
-          <MDBCol md="4" className="mb-3 text-center">
-            <img className="img-thumbnail rounded-circle" src={this.state.bandImageUrl}></img>
-          </MDBCol>
-          <MDBCol md="4" className="mb-3 text-center">
-            <img className="img-thumbnail rounded-circle" src={this.state.bandImageUrl}></img>
-          </MDBCol>
-          <MDBCol md="4" className="mb-3 text-center">
-            <img className="img-thumbnail rounded-circle" src={this.state.bandImageUrl}></img>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-*/

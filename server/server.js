@@ -5,22 +5,10 @@ const port = 2000;
 const db = require('../database/database.js');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(express.static('client'));
-
-// app.get('/artistBio/:bandId', (req, res) => {
-//   // console.log('Params coming through: ', req.params);
-//   db.findBand(req.params.bandId)
-//     .then((response) => {
-//       // Simply test that db func is receiving param and can search db
-//       console.log(chalk.blue('Response from db: ', response));
-//       res.send(response);
-//     })
-//     .catch((error) => {
-//       console.log(chalk.red(('Error finding band in db: ', error)));
-//       res.status(400).send(error);
-//     });
-// });
+app.use(cors());
 
 app.get('/artistBio/:bandId', async(req, res) => {
   try {
