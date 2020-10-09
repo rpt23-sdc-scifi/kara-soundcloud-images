@@ -18,7 +18,9 @@ const seedDatabase = () => {
         var bandObj = {
           bandId: i + 1,
           bandImageUrl: imageData[i].urls.raw,
-          bandName: bands.bandNames[i]
+          bandName: bands.bandNames[i],
+          followers: Math.floor(Math.random() * Math.floor(100)),
+          tracks: Math.floor(Math.random() * Math.floor(25))
         };
         database.saveImages(bandObj)
           .then((response) => {

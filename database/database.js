@@ -37,7 +37,9 @@ const imageSchema = new mongoose.Schema({
     unique: true
   },
   bandName: String,
-  bandImageUrl: String
+  bandImageUrl: String,
+  followers: Number,
+  tracks: Number
 });
 
 const Image = mongoose.model('Image', imageSchema);

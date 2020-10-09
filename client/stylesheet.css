@@ -1,6 +1,69 @@
-/*
--Use something to obtain soundcloud html color codes
--inspect band profile element on SC for dimensions and other needed data
-*/
+.band-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 75px;
+}
 
+.band-name {
+  font-size: 14px;
+  font-weight: lighter;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #333333;
+}
+
+.follow-btn {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: lighter;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #ff5500;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 0px;
+  border-radius: 3px;
+}
+
+.user-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.followers-icon {
+  color: #999999;
+}
+
+.followers, .tracks {
+  color: #999999;
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.tracks-icon {
+  color: #666;
+  padding-left: 10px;
+}
+
+.follow-icon {
+  padding-right: 5px;
+}
+
+.report-icon {
+  padding-right: 5px;
+}
+.report-icon, .report-text {
+  padding-top: 20px;
+  color: rgb(65, 65, 65);
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
