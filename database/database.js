@@ -28,7 +28,7 @@ const bandSchema = new mongoose.Schema({
 
 const Band = mongoose.model('Band', bandSchema);
 
-// --------- SAVE IMAGE FUNC --------- //
+// --------- SAVE BAND FUNC --------- //
 
 const saveBands = (bandData) => {
   var band = new Band(bandData);
@@ -37,6 +37,8 @@ const saveBands = (bandData) => {
       console.log('Error saving to database: ', error);
     });
 };
+
+// --------- FIND BAND FUNC --------- //
 
 const findBand = function(id) {
   return Band.findOne({bandId: id});
