@@ -26,6 +26,10 @@
   border-radius: 3px;
 }
 
+.follow-btn:hover {
+  cursor: pointer;
+}
+
 .user-stats {
   display: flex;
   flex-wrap: wrap;
@@ -67,3 +71,6 @@ ul {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.report-icon, .report-text:hover {
+  cursor: pointer;
+}
