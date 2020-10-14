@@ -32,7 +32,7 @@ class BandProfile extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/artistBio/10')
+    axios.get('/artistBio/1')
       .then((response) => {
         console.log('Response from initial render GET: ', response.data.data);
         this.updateBio(response.data.data);
