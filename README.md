@@ -4,10 +4,12 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/lions-beside-us/soundcloudplayer
+  - https://github.com/lions-beside-us/comments-service
+  - https://github.com/lions-beside-us/hashtags-service
+  - https://github.com/lions-beside-us/user-service
+  - https://github.com/lions-beside-us/soundcloud-related-tracks
+
 
 ## Table of Contents
 
@@ -17,14 +19,15 @@
 
 ## Usage
 
-> Some usage instructions
+> In order to use this repo, you must create a 'config.js' file in your root directory and use the Unsplash API key I provided.
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+  - React
+  - React-DOM
+  - Express
+  - Axios
 
-- Node 6.13.0
-- etc
 
 ## Development
 
