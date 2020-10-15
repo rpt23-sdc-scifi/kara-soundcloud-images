@@ -38,3 +38,6 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+
+// if local deployment equals true, instead of making get request, use sample json blob as if you made a get request
+// async await to retireve data response from get to API to find bandId matching songId
