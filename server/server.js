@@ -7,8 +7,11 @@ const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-app.use('/:songId', express.static('client'));
 app.use(cors());
+app.get('/bundle.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/bundle.js'));
+});
+app.use('/:songId', express.static(path.join(__dirname, '../client')));
 
 app.get('/artistBio/:songId', async(req, res) => {
   try {
@@ -31,6 +34,10 @@ app.get('/artistBio/:songId', async(req, res) => {
       msg: error
     });
   }
+});
+
+app.get('/:current', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 app.listen(port, () => {

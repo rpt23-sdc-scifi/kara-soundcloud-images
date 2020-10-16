@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
+// --------------- ICONS --------------------- //
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { BiEqualizer } from 'react-icons/bi';
 import { BsExclamationDiamondFill } from 'react-icons/bs';
 import { BsPersonPlus } from 'react-icons/bs';
-import { FaUserCheck } from '@fortawesome/free-solid-svg-icons';
+import { FaUserCheck } from 'react-icons/fa';
+// ------------------------------------------- //
 
 class BandProfile extends React.Component {
   constructor(props) {
@@ -32,21 +35,35 @@ class BandProfile extends React.Component {
       bandName: data.bandName,
       bandImageUrl: data.bandImageUrl,
       followers: data.followers,
-      tracks: data.tracks
+      tracks: data.tracks,
+      isFollowed: false
     });
   }
 
   handleFollowClick(event) {
     console.log('Follow Button Clicked!!');
+    this.setState({
+      isFollowed: !this.state.isFollowed
+    });
+    if (this.state.isFollowed === false) {
+      this.setState({
+        followers: this.state.followers + 1
+      });
+    } else {
+      this.setState({
+        followers: this.state.followers - 1
+      });
+    }
   }
 
   componentDidMount() {
-    let splitUrl = window.location.href.split('/');
+    let splitUrl = window.location.pathname.split('/');
     console.log('URL: ', splitUrl);
-    let songId = splitUrl[3];
+    let songId = splitUrl.filter(function(id) {
+      return parseInt(id);
+    });
     axios.get(`/artistBio/${songId}`)
       .then((response) => {
-        console.log('Response from initial render GET: ', response.data.data);
         this.updateBio(response.data.data);
       })
       .catch((error) => {
@@ -66,8 +83,11 @@ class BandProfile extends React.Component {
             </li>
           </ul>
         </div>
-        <button className="follow-btn" onClick={this.handleFollowClick}><BsPersonPlus className="follow-icon" />Follow</button>
+        <div>
+          {this.state.isFollowed ? <button className="following-btn" onClick={this.handleFollowClick}><FaUserCheck/> Following </button> : <button className='follow-btn' onClick={this.handleFollowClick}> <BsPersonPlus/>  Follow </button>}
+        </div>
         <ul>
+
           <li>
             <BsExclamationDiamondFill className="report-icon" /> <span className="report-text">Report</span>
           </li>
@@ -79,4 +99,8 @@ class BandProfile extends React.Component {
 
 export default BandProfile;
 
-// check state and render component based on true/false
+/*
+
+
+
+*/
