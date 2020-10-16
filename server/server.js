@@ -7,17 +7,17 @@ const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-app.use(express.static('client'));
+app.use('/:songId', express.static('client'));
 app.use(cors());
 
-app.get('/artistBio/:bandId', async(req, res) => {
+app.get('/artistBio/:songId', async(req, res) => {
   try {
-    const band = await db.findBand(req.params.bandId);
+    const band = await db.findBand(req.params.songId);
     // if !band then error
     if (!band) {
       return res.status(400).json({
         success: false,
-        msg: `there is no band with id ${req.params.bandId}`
+        msg: `there is no band with songId ${req.params.songId}`
       });
     }
     res.status(200).send({

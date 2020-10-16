@@ -4,7 +4,12 @@ const apiKey = require('./config.js');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
-const seedDatabase = () => {
+const getRandomInt = function(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
+const seedDatabase = async () => {
+  var deleted = await database.deleteBands();
   var bandData = [];
   axios.get(`https://api.unsplash.com/search/photos?query=music&per_page=30&client_id=${apiKey}`)
     .then((response) => {
@@ -13,13 +18,14 @@ const seedDatabase = () => {
       return bandData;
     })
     .then((results) => {
-      for (var i = 0; i < 30; i++) {
+      for (var i = 0; i < 100; i++) {
         var bandObj = {
           bandId: i + 1,
-          bandImageUrl: bandData[i].urls.raw,
+          songId: i + 1,
+          bandImageUrl: bandData[getRandomInt(29)].urls.raw,
           bandName: bands.bandNames[i],
-          followers: Math.floor(Math.random() * Math.floor(100)),
-          tracks: Math.floor(Math.random() * Math.floor(25))
+          followers: getRandomInt(100),
+          tracks: getRandomInt(25)
         };
         database.saveBands(bandObj)
           .then((response) => {
