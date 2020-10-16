@@ -25,8 +25,23 @@
   border: 0px;
   border-radius: 3px;
 }
+.following-btn {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: lighter;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: white;
+  color: #ff5500;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 1px;
+  border-color: #ff5500;
+  border-radius: 3px;
+}
 
-.follow-btn:hover {
+.following-btn, .follow-btn:hover {
   cursor: pointer;
 }
 
@@ -62,15 +77,21 @@ ul {
 }
 
 .report-icon {
+  height: 12px;
+  width: 12px;
   padding-right: 5px;
 }
 .report-icon, .report-text {
   padding-top: 20px;
-  color: rgb(65, 65, 65);
+  color: rgb(83, 83, 83);
   font-size: 11px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .report-icon, .report-text:hover {
   cursor: pointer;
+}
+
+.report-text:hover {
+  color: black;
 }

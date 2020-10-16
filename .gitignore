@@ -26,3 +26,5 @@ dist/
 
 # API
 config.js
+
+client/bundle.js
