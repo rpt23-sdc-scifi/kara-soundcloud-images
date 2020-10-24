@@ -30,13 +30,6 @@ const bandSchema = new mongoose.Schema({
   tracks: Number
 });
 
-// for loop 1-100, off of band array, assign band name to each song
-// songid will be primary key in mongo
-// must store 100 peices of data
-// frankie send me song id, i return band name
-// new endpoint where frankie does get request w/ song id
-// i send response of band name string
-
 const Band = mongoose.model('Band', bandSchema);
 
 // --------- SAVE BAND FUNC --------- //
@@ -67,6 +60,16 @@ const deleteBands = function() {
     });
 };
 
+// ------ UPDATE FOLLOWERS FUNC ------- //
+
+const updateFollowers = function(id, val) {
+  return Band.updateOne({bandId: id}, {$inc: {followers: val * 1}})
+    .catch((error) => {
+      console.log('Error updating followers', error);
+    });
+};
+
 module.exports.saveBands = saveBands;
 module.exports.findBand = findBand;
 module.exports.deleteBands = deleteBands;
+module.exports.updateFollowers = updateFollowers;

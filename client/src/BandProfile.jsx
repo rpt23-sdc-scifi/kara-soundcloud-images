@@ -41,24 +41,34 @@ class BandProfile extends React.Component {
   }
 
   handleFollowClick(event) {
-    console.log('Follow Button Clicked!!');
+    var bandId = event.target.value;
     this.setState({
       isFollowed: !this.state.isFollowed
+    }, () => {
+      // post request to server to update followers
+      axios.post('/followers', {
+        id: bandId,
+        value: this.state.isFollowed ? 1 : -1
+      })
+        .then((response) => {
+          if (this.state.isFollowed === true) {
+            this.setState({
+              followers: this.state.followers + 1
+            });
+          } else {
+            this.setState({
+              followers: this.state.followers - 1
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Error updating followers: ', error);
+        });
     });
-    if (this.state.isFollowed === false) {
-      this.setState({
-        followers: this.state.followers + 1
-      });
-    } else {
-      this.setState({
-        followers: this.state.followers - 1
-      });
-    }
   }
 
   componentDidMount() {
     let splitUrl = window.location.pathname.split('/');
-    console.log('URL: ', splitUrl);
     let songId = splitUrl.filter(function(id) {
       return parseInt(id);
     });
@@ -71,7 +81,7 @@ class BandProfile extends React.Component {
       });
   }
 
-  render () {
+  render() {
     return (
       <div className="cam artist-bio">
         <img className="band-image" src={this.state.bandImageUrl}/>
@@ -84,7 +94,7 @@ class BandProfile extends React.Component {
           </ul>
         </div>
         <div>
-          {this.state.isFollowed ? <button className="following-btn" onClick={this.handleFollowClick}><FaUserCheck/> Following </button> : <button className='follow-btn' onClick={this.handleFollowClick}> <BsPersonPlus/>  Follow </button>}
+          {this.state.isFollowed ? <button className="following-btn" value={this.state.bandId} onClick={this.handleFollowClick}><FaUserCheck/> Following </button> : <button className='follow-btn' value={this.state.bandId} onClick={this.handleFollowClick}> <BsPersonPlus/>  Follow </button>}
         </div>
         <ul>
 
@@ -98,9 +108,3 @@ class BandProfile extends React.Component {
 }
 
 export default BandProfile;
-
-/*
-
-
-
-*/
