@@ -7,11 +7,14 @@ const chalk = require('chalk');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.get('/bundle.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/bundle.js'));
 });
 app.use('/:songId', express.static(path.join(__dirname, '../client')));
+
 
 app.get('/artistBio/:songId', async(req, res) => {
   try {
@@ -35,6 +38,23 @@ app.get('/artistBio/:songId', async(req, res) => {
     });
   }
 });
+
+// ----- UPDATE FOLLOWERS ----- //
+
+app.post('/followers', (req, res) => {
+  var bandId = req.body.id;
+  var value = req.body.value;
+  db.updateFollowers(bandId, value)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((error) => {
+      console.log('Error updating followers: ', error);
+      res.sendStatus(500);
+    })
+})
+
+// ---------------------------- //
 
 app.get('/:current', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
