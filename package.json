@@ -11,7 +11,7 @@
     "seed": "node ./seedDB.js",
     "build": "webpack --mode=development -d --watch",
     "prod": "webpack --mode=production -d --watch",
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "test": "mocha",
     "cypress:open": "cypress open"
   },
