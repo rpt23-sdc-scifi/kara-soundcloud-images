@@ -25,6 +25,9 @@ class BandProfile extends React.Component {
     };
     this.updateBio = this.updateBio.bind(this);
     this.handleFollowClick = this.handleFollowClick.bind(this);
+    this.getIdAndUpdateDOM = this.getIdAndUpdateDOM.bind(this);
+
+    this.getIdAndUpdateDOM();
   }
 
   updateBio(data) {
@@ -46,6 +49,7 @@ class BandProfile extends React.Component {
       isFollowed: !this.state.isFollowed
     }, () => {
       // post request to server to update followers
+
       axios.post('/followers', {
         id: bandId,
         value: this.state.isFollowed ? 1 : -1
@@ -67,7 +71,7 @@ class BandProfile extends React.Component {
     });
   }
 
-  componentDidMount() {
+  getIdAndUpdateDOM() {
     let splitUrl = window.location.pathname.split('/');
     let songId = splitUrl.filter(function(id) {
       return parseInt(id);
@@ -81,7 +85,7 @@ class BandProfile extends React.Component {
       });
   }
 
-  render() {
+  render () {
     return (
       <div className="cam artist-bio">
         <img className="band-image" src={this.state.bandImageUrl}/>
