@@ -14,7 +14,7 @@ app.use(cors());
 app.get('/bundle.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/bundle.js'));
 });
-// app.use('/:songId', express.static(path.join(__dirname, '../client')));
+app.use('/:songId', express.static(path.join(__dirname, '../client')));
 
 app.use('/', expressStaticGzip(path.join(__dirname, '../client'), {
   enableBrotli: true,
@@ -74,6 +74,3 @@ app.listen(port, () => {
 });
 
 module.exports = app;
-
-// if local deployment equals true, instead of making get request, use sample json blob as if you made a get request
-// async await to retireve data response from get to API to find bandId matching songId

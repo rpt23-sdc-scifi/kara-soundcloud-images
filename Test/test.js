@@ -32,7 +32,6 @@ describe('/GET band', () => {
         res.should.have.status(400);
         res.body.msg.should.be.a('string');
         res.body.msg.should.be.equal('there is no band with songId 101');
-
       });
   });
 });
