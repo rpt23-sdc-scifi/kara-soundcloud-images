@@ -20,10 +20,12 @@ const bandSchema = new mongoose.Schema({
     type: Number,
     unique: true
   },
+  // --- TBD: Why is a single songId assigned to a band? --- //
   songId: {
     type: Number,
     unique: true
   },
+  // --- delete between comments if unjustified --- //
   bandName: String,
   bandImageUrl: String,
   followers: Number,
@@ -47,29 +49,51 @@ const saveBands = (bandData) => {
 const findBand = function(id) {
   return Band.findOne({songId: id})
     .catch((error) => {
-      console.log('Error finding band in database: ', error);
+      console.log('DB Error finding band: ', error);
     });
 };
 
 // --------- DELETE BANDS FUNC --------- //
+// TBD: Is it ever desirable to nuke the database? :|
 
 const deleteBands = function() {
   return Band.deleteMany({})
     .catch((error) => {
-      console.log('Error deleting bands in database: ', error);
+      console.log('DB Error deleting bands: ', error);
+    });
+};
+
+// ------- DELETE ONE BAND ---------- //
+
+const deleteBand = function(id) {
+  return Band.deleteOne({bandId: id})
+    .catch((error) => {
+      console.log('DB Error deleting bands: ', error);
     });
 };
 
 // ------ UPDATE FOLLOWERS FUNC ------- //
+// TBD: Update its name all-around
 
 const updateFollowers = function(id, val) {
   return Band.updateOne({bandId: id}, {$inc: {followers: val * 1}})
     .catch((error) => {
-      console.log('Error updating followers', error);
+      console.log('DB Error updating followers', error);
+    });
+};
+
+// ------ UPDATE TRACKS COUNT FUNC ------- //
+
+const incrementTracks = function(id, val) {
+  return Band.updateOne({bandId: id}, {$inc: {tracks: val * 1}})
+    .catch((error) => {
+      console.log('DB Error incrementing tracks', error);
     });
 };
 
 module.exports.saveBands = saveBands;
 module.exports.findBand = findBand;
 module.exports.deleteBands = deleteBands;
+module.exports.deleteBand = deleteBand;
 module.exports.updateFollowers = updateFollowers;
+module.exports.incrementTracks = incrementTracks;
